@@ -14,15 +14,22 @@ class App extends Component {
 
   componentDidMount() {
     const { params } = this.props.match;
+    const localStorageRef = localStorage.getItem(params.storeID);
+    if (localStorageRef) {
+      this.setState({ order: JSON.parse(localStorageRef) });
+    }
     this.ref = base.syncState(`${params.storeID}/fishes`, {
       context: this,
       state: "fishes"
     });
   }
 
-  componentWillUnmount() {
-    console.log("unmounted");
+  componentDidUpdate(prevProps, prevState) {
+    const { params } = this.props.match;
+    localStorage.setItem(params.storeID, JSON.stringify(this.state.order));
+  }
 
+  componentWillUnmount() {
     base.removeBinding(this.ref);
   }
 
