@@ -16,8 +16,7 @@ class Order extends Component {
     }
     return (
       <li key={key}>
-        {count} lbs {fish.name}
-        {formatPrice(count * fish.price)}
+        {count} lbs {fish.name} {formatPrice(count * fish.price)}
       </li>
     );
   };
