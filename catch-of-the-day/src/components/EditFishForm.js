@@ -44,6 +44,9 @@ class EditFishFrom extends Component {
           onChange={this.handleChange}
           value={this.props.fish.text}
         />
+        <button onClick={() => this.props.deleteFish(this.props.index)}>
+          Remove Fish
+        </button>
       </div>
     );
   }
